@@ -143,8 +143,10 @@ function GameController(
     printNewRound();
   };
 
-  const resetGame = () => {
+  const resetGame = (newPlayerOneName, newPlayerTwoName) => {
     board.getBoard().forEach((row) => row.forEach((cell) => cell.addToken(0)));
+    players[0].name = newPlayerOneName;
+    players[1].name = newPlayerTwoName;
     activePlayer = players[0];
     printNewRound();
   };
@@ -160,10 +162,13 @@ function GameController(
 }
 
 function ScreenController() {
-  const game = GameController();
+  let game = GameController();
   const playerTurnDiv = document.querySelector(".turn");
   const boardDiv = document.querySelector(".board");
   const newGameButton = document.querySelector(".new-game");
+  const nameSubmitButton = document.querySelector("#nameSubmit");
+  const firstText = document.querySelector("#firstText");
+  const secondText = document.querySelector("#secondText");
 
   const updateScreen = () => {
     boardDiv.textContent = "";
@@ -196,11 +201,20 @@ function ScreenController() {
   }
 
   function clickHandlerNewGame() {
-    game.resetGame();
+    game.resetGame(
+      firstText.value || "Player One",
+      secondText.value || "Player Two"
+    );
     updateScreen();
   }
+
+  function clickHandlerNameSubmit() {
+    console.log(`Names submitted: ${firstText.value} and ${secondText.value}`);
+  }
+
   boardDiv.addEventListener("click", clickHandlerBoard);
   newGameButton.addEventListener("click", clickHandlerNewGame);
+  nameSubmitButton.addEventListener("click", clickHandlerNameSubmit);
 
   updateScreen();
 }
