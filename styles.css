@@ -1,3 +1,32 @@
 html {
   background-color: aqua;
 }
+.board {
+  display: grid;
+  height: 500px;
+  width: 500px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  border: 1px solid black;
+  gap: 2px;
+  padding: 2px;
+  background-color: yellow;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+  border: 1px solid grey;
+  background: lightyellow;
+  cursor: pointer;
+}
+
+.new-game {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
